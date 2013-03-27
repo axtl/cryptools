@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """This module contains a few conversion utility functions for that work
-around Python's formatting of various data types.
+around Python's formatting and representation of various data types.
 """
 import math
 
@@ -17,6 +17,20 @@ def htoi(h):
     return eval(bin(ord(h)))
 
 
+def htoc(h):
+    """Convert hexit to character.
+
+    This function does not check if the character is printable or not.
+
+    >>> htoc('\\\\x74')
+    't'
+
+    :param h: hexit to convert
+    :return: character representation of the hexit
+    """
+    return h[-2:].decode('hex')
+
+
 def itoh(i):
     """Convert integer to hexit of the form ``\\x00``.
 
@@ -25,26 +39,12 @@ def itoh(i):
     though that wouldn't work if we were directly trying to hex decode it.
 
     >>> itoh(116)
-    '\\x74'
+    '\\\\x74'
 
     :param i: integer value to convert
     :return: hexit of the form ``\\x00``
     """
     return '\\' + hex(i)[1:]
-
-
-def htoc(h):
-    """Convert hexit to character.
-
-    This function does not check if the character is printable or not.
-
-    >>> htoc('\\x74')
-    't'
-
-    :param h: hexit to convert
-    :return: character representation of the hexit
-    """
-    return h[-2:].decode('hex')
 
 
 def xor(str1, str2):
@@ -57,7 +57,7 @@ def xor(str1, str2):
     >>> xor('HAL', 'IBM')
     '\\x01\\x03\\x01'
     >>> xor('foo', 'foobar')
-    '\\x00\\x00\\x00\\x04\\x03\\x1d'
+    '\\x00\\x00\\x00\\x04\\x0e\\x1d'
 
     :param str1: first string to use as input
     :param str2: second string to use as input
@@ -82,7 +82,7 @@ def xor_hex(buff1, buff2):
 
     >>> h1 = "686974207468652062756c6c277320657965"
     >>> h2 = "746865206b696420646f6e277420706c6179"
-    >>> xor(h1, h2)
+    >>> xor_hex(h1, h2)
     '1c0111001f010100061a024b53535009181c'
 
     :param buff1: first hex-encoded buffer
