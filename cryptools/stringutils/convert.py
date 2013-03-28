@@ -47,7 +47,7 @@ def itoh(i):
     return '\\' + hex(i)[1:]
 
 
-def xor(str1, str2):
+def xor(key, msg):
     """XOR two strings.
 
 
@@ -59,12 +59,12 @@ def xor(str1, str2):
     >>> xor('foo', 'foobar')
     '\\x00\\x00\\x00\\x04\\x0e\\x1d'
 
-    :param str1: first string to use as input
-    :param str2: second string to use as input
+    :param key: the key to XOR under
+    :param msg: the message to XOR
     :return: a string resulting from XOR-ing the two input parameters
     """
     # sort by length
-    in1, in2 = sorted([str1, str2], key=len)
+    in1, in2 = sorted([key, msg], key=len)
 
     # see how much padding is needed, extend beyond and then trim
     r = int(math.ceil(len(in2) / float(len(in1))))
@@ -74,7 +74,7 @@ def xor(str1, str2):
     return ''.join([chr(htoi(c1) ^ htoi(c2)) for (c1, c2) in zip(in1, in2)])
 
 
-def xor_hex(buff1, buff2):
+def xor_hex(key, msg):
     """Return the hex-encoded value of XOR-ing two (hex-encoded) buffers.
 
     The buffers are hex-decoded, passed to :func:`xor`, and the result is
@@ -85,8 +85,8 @@ def xor_hex(buff1, buff2):
     >>> xor_hex(h1, h2)
     '1c0111001f010100061a024b53535009181c'
 
-    :param buff1: first hex-encoded buffer
-    :param buff2: second hex-encoded buffer
+    :param key: hex-encoded key to XOR under
+    :param msg: hex-encoded message to XOR
     :return: a hex-encoded string resulting from XOR-ing the two buffers
     """
-    return xor(buff1.decode('hex'), buff2.decode('hex')).encode('hex')
+    return xor(key.decode('hex'), msg.decode('hex')).encode('hex')
