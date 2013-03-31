@@ -5,6 +5,15 @@ from stringutils import convert, freq
 
 
 def brute_xor(cyphertext, st_freqs):
+    """Bruteforce a given single-character XOR-encrypted cyphertext.
+
+    Statistical information is used to choose which character is the most
+    likely key.
+
+    :param cyphertext: the cyphertext to crack
+    :param st_freqs: a Counter of standard frequencies in the target language
+    :return: ``(key, message, distance)``
+    """
     # standard frequency counts
     st_keys = st_freqs.keys()
     st_len = len(st_keys)
@@ -34,4 +43,4 @@ def brute_xor(cyphertext, st_freqs):
             topchoice = dec
             key = test
 
-    return topchoice, key
+    return key, topchoice, lowdist
