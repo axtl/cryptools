@@ -6,4 +6,4 @@ __author__ = 'xorbyte'
 __license__ = 'MIT'
 __copyright__ = 'Copyright 2013 xorbyte'
 
-from . import stringutils
+from . import crack, stringutils

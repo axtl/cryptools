@@ -9,6 +9,14 @@ cryptools Package
     :undoc-members:
     :show-inheritance:
 
+:mod:`crack` Module
+-------------------
+
+.. automodule:: cryptools.crack
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
 Subpackages
 -----------
 

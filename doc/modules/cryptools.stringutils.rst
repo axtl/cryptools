@@ -17,3 +17,11 @@ stringutils Package
     :undoc-members:
     :show-inheritance:
 
+:mod:`freq` Module
+------------------
+
+.. automodule:: cryptools.stringutils.freq
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
