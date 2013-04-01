@@ -4,9 +4,10 @@ from collections import defaultdict, Counter
 
 
 def char_count(text):
-    """Counts occurrences of each (printable) character in the input.
+    """Counts occurrences of each character in the input.
 
-    The count is case-sensitive.
+    The count is case-sensitive and only takes into account letters,
+    digits, and whitespace.
 
     >>> char_count("to be or not to be.")
     Counter({' ': 5, 'o': 4, 't': 3, 'b': 2, 'e': 2, 'n': 1, 'r': 1, '.': 1})
@@ -18,7 +19,7 @@ def char_count(text):
     freqs.update(text)
     # trim to useful characters
     for ch in freqs.keys():
-        if ch not in (string.printable):
+        if ch not in (string.letters + string.digits + string.whitespace):
             freqs.pop(ch)
     return freqs
 
